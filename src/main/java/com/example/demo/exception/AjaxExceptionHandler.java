@@ -16,10 +16,11 @@ import com.example.demo.pojo.MessageJSONResult;
 */
 @ControllerAdvice
 public class AjaxExceptionHandler {
-	
+	private static final String TAG = AjaxExceptionHandler.class.getName(); 
 	@ResponseBody
 	@ExceptionHandler(value=Exception.class)
 	public MessageJSONResult getError(HttpServletRequest request , Exception e) throws Exception{
+		System.out.println(TAG + " : EXCEPTION");
 		return MessageJSONResult.errorException(e.getMessage());
 	}
 }

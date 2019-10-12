@@ -18,7 +18,7 @@
 		<java.version>1.8</java.version>
 		<azure.version>2.1.7</azure.version>  
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-		<alibaba.druid.version>1.0.0</alibaba.druid.version>
+		<alibaba.druid.version>1.1.10</alibaba.druid.version>
 		<mysql.version>8.0.11</mysql.version>
 		<mapper.starter.version>2.0.3-beta1</mapper.starter.version>
         <pagehelper.starter.version>1.2.5</pagehelper.starter.version>
@@ -99,13 +99,13 @@
 		    <artifactId>mapper-spring-boot-starter</artifactId> 
 		    <version>1.2.4</version>
 		</dependency>
-		<!-- 
+		
 		<dependency>
-		    <groupId>tk.mybatis</groupId>
-		    <artifactId>mapper</artifactId>
-		    <version>3.5.3</version>
-		</dependency>
-		 -->
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+		
 		<!--pagehelper 做分页使用-->
 		<dependency>
 		    <groupId>com.github.pagehelper</groupId>
@@ -121,11 +121,17 @@
 			<version>${alibaba.druid.version}</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.10</version>
+		</dependency>
+		
         <!-- 引用MySQL数据库 -->
         <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
+			<version>8.0.11</version>
 		</dependency>
 		
 		<dependency>
@@ -136,11 +142,7 @@
 			<optional>true</optional>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.0</version>
-		</dependency>
+		
 		
 	</dependencies>
 
