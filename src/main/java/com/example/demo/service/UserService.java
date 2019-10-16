@@ -22,4 +22,6 @@ public interface UserService {
 	public List<SysUser> queryUserList(SysUser user);
 	
 	public List<SysUser> queryUserListPaged(SysUser user , Integer page, Integer pageSize);
+	
+	public SysUser queryUserInfoById(String id);
 }

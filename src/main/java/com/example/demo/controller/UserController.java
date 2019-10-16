@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 import java.util.Date;
+import java.util.concurrent.Future;
 
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,7 @@ import com.example.demo.pojo.MessageJSONResult;
 import com.example.demo.pojo.SysUser;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
+import com.example.demo.task.AsyncTask;
 
 /**
 * @author：Administrator
@@ -27,6 +30,14 @@ public class UserController {
 	//根据当前时间生成的唯一字符串ID工具类
 	@Autowired
 	private Sid sid;
+	
+	//Redis2.0.5中的字符串模板类
+	@Autowired
+	private StringRedisTemplate strRedis;
+	
+	//异步任务类
+	@Autowired
+	private AsyncTask asyncTask;
 	
 //	@ResponseBody
 	@RequestMapping("/getUser")
@@ -107,6 +118,45 @@ public class UserController {
 		int pageSize = 10;
 		SysUser user = new SysUser();
 		return MessageJSONResult.ok(userService.queryUserListPaged(user, currentPage, pageSize));
+	}
+	
+	@RequestMapping("/queryUserInfoById")
+	public MessageJSONResult queryUserInfoById(String userId) {
+		SysUser u = userService.queryUserById(userId);
+		return MessageJSONResult.ok(u);
+	}
+	
+	
+	@RequestMapping("/testRedis")
+	public MessageJSONResult getRedis() {
+		strRedis.opsForValue().set("pinglian-cache", "hello pinglian~~~~~~~");
+		System.out.println("--- Redis set success ---");
+		return MessageJSONResult.ok(strRedis.opsForValue().get("pinglian-cache"));
+	}
+	
+	//异步任务
+	@RequestMapping("/testAsyncTask")
+	public String testAsyncTask() {
+		String time = "";
+		try {
+			long startTime = System.currentTimeMillis();
+			Future<Boolean> future1 = asyncTask.doTask11();
+			Future<Boolean> future2 = asyncTask.doTask22();
+			Future<Boolean> future3 = asyncTask.doTask33();
+			
+			while (!future1.isDone() || !future2.isDone() || !future3.isDone()) {
+				if(future1.isDone() && future2.isDone() && future3.isDone())
+					break;
+			}
+			long endTime =  System.currentTimeMillis();
+			time = String.valueOf(endTime - startTime);
+			System.out.println("任务全部完成，总耗时：" + time + "毫秒");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return time;
 	}
 	
 }
