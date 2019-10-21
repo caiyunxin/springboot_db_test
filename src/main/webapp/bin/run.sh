@@ -85,11 +85,11 @@ function stop_service(){
 	else
 		EXEC_PID=$(ps axuf | grep ${DEPLOY_DIR} | grep -v grep | awk '{print $2}')
 	fi
-	kill $EXEC_PID > /home/work/spring_test_cyx/logs/kills 2>&1
+	kill $EXEC_PID > $LOG_DIR/kills 2>&1
 	COUNT=`ps --no-heading -C java -f --width 2000 | grep "$DEPLOY_DIR" | awk '{print $2}' | wc -l`
 	if [ $COUNT -gt 0 ]; then
 		sleep 5
-		kill -9 $EXEC_PID > /home/work/spring_test_cyx/logs/kills 2>&1
+		kill -9 $EXEC_PID > $LOG_DIR/kills 2>&1
 	fi
 	rm -f $EXEC_PID_FILE
 
