@@ -14,11 +14,11 @@ import com.example.demo.pojo.MessageJSONResult;
 * @createDate:2019-10-08 57:12
 * @description:AjaxExceptionHandler Ajax异常捕获类
 */
-@ControllerAdvice
+//@ControllerAdvice
 public class AjaxExceptionHandler {
 	private static final String TAG = AjaxExceptionHandler.class.getName(); 
-	@ResponseBody
-	@ExceptionHandler(value=Exception.class)
+//	@ResponseBody
+//	@ExceptionHandler(value=Exception.class)
 	public MessageJSONResult getError(HttpServletRequest request , Exception e) throws Exception{
 		System.out.println(TAG + " : EXCEPTION");
 		return MessageJSONResult.errorException(e.getMessage());

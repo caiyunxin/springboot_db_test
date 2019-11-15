@@ -18,14 +18,19 @@
                         userId="${spring.datasource.username}"
                         password="${spring.datasource.password}">
         </jdbcConnection>
-         -->
+         
          
          <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://172.16.0.87:3306/springboot_db_test?characterEncoding=utf-8&amp;serverTimezone=UTC&amp;useSSL=false"
                         userId="root"
                         password="pinglian2018">
         </jdbcConnection>
-        
+        -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://172.16.10.161:3306/pltc_hotel?characterEncoding=UTF-8&amp;useUnicode=true&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="root"
+                        password="password@pinglian">
+        </jdbcConnection>
 		<!-- 对于生成的pojo所在包 -->
         <javaModelGenerator targetPackage="com.example.demo.pojo" targetProject="src/main/java"/>
 		
@@ -36,7 +41,7 @@
         <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="sys_user">
+        <table tableName="sys_ls_op_log">
             <!--mysql 配置-->
             <!-- <generatedKey column="id" sqlStatement="Mysql" identity="true"/> -->
             <!--oracle 配置-->

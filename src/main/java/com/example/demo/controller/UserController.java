@@ -122,7 +122,7 @@ public class UserController {
 	
 	@RequestMapping("/queryUserInfoById")
 	public MessageJSONResult queryUserInfoById(String userId) {
-		SysUser u = userService.queryUserById(userId);
+		SysUser u = userService.queryUserInfoById(userId);
 		return MessageJSONResult.ok(u);
 	}
 	
