@@ -33,21 +33,32 @@ public class BaseController {
 	
 	
 	@RequestMapping(value= {"/postDelete"})
-	public String postDelete(String time , String submitValue) throws Exception{
-		System.out.println(" tiem = " + time + " , submitValue = " + submitValue);
-		if(submitValue.equals("启动")) {
-			System.out.println("启动时线程名称 ： "+Thread.currentThread().getName());
-			//启动删除任务
-			CommonConfig.started = true;
-			CommonConfig.submitStr = "停止";
-			
-			deleteTask.doDeleteById();
-		}else if(submitValue.equals("停止")) {
-			//停止删除任务
-			System.out.println("停止时线程名称 ： "+Thread.currentThread().getName());
-			CommonConfig.started = false;
-			CommonConfig.submitStr = "启动";
+	public String postDelete(String userName, String userPwd, String submitValue) throws Exception {
+		System.out.println(" userName = " + userName + " , userPwd = " + userPwd + " , submitValue = " + submitValue);
+		
+		if(null == userName || userName.isEmpty() || !userName.equals("tengshike@pinglian.hk")) {
+			CommonConfig.defaultTimeStr = "<font color='red'><b>用户名不正确</b></font>";
+		}else if(null == userPwd || userPwd.isEmpty() || !userPwd.equals("tengshike@pinglian.hk")) {
+			CommonConfig.defaultTimeStr = "<font color='red'><b>密码不正确</b></font>";
+		}else {
+			if (submitValue.equals("启动")) {
+				System.out.println("启动时线程名称 ： " + Thread.currentThread().getName());
+				if (!CommonConfig.started) {
+					// 启动删除任务
+					CommonConfig.started = true;
+					CommonConfig.defaultTimeStr = "<font color='green'><b>删除任务已启动</b></font>";
+					CommonConfig.submitStr = "停止";
+					deleteTask.doDeleteById(userName);
+				}
+			} else if (submitValue.equals("停止")) {
+				// 停止删除任务
+				System.out.println("停止时线程名称 ： " + Thread.currentThread().getName());
+				CommonConfig.started = false;
+				CommonConfig.defaultTimeStr = "<font color='red'><b>删除任务已停止</b></font>";
+				CommonConfig.submitStr = "启动";
+			}
 		}
+	
 		return "redirect:/deleteLog/deleteInfo";
 	}
 	

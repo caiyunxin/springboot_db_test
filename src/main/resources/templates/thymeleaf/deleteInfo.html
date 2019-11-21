@@ -5,18 +5,26 @@
 <title>This is info page</title>
 </head>
 <body>
-	<h1>信息页面</h1>
+	<h3>&nbsp;&nbsp;清理数据</h3>
 	<hr style="height:8px;border:none;border-top:10px groove skyblue;" />
 
 	<form th:action="@{/deleteLog/postDelete}" th:method="post">
 		<div>
-			<label>时间：</label> 
+			<label>用户：</label> 
 			<!-- 
 			<input type="text" name="time" th:value ="${time}" placeholder="请输入日期(2016-01-01)" required pattern="^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"/>
-			 -->
+			 
 			<input type="text" name="time" th:value ="${time}" placeholder="请输入日期(2016-01-01)" />
-			<input type="submit" name="submitValue" th:value="${submitStr}"/>
+			-->
+			<input type="text" name="userName"  placeholder="请输入用户名" />
+			&nbsp;&nbsp;<label>密码：</label> 
+			<input type="text" name="userPwd"  placeholder="请输入密码" />
+			
+			&nbsp;&nbsp;<input type="submit" name="submitValue" th:value="${submitStr}"/>
+			
+			&nbsp;&nbsp;<span th:utext="${time}"></span>
 		</div>
 	</form>
+	
 </body>
 </html>

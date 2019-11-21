@@ -51,7 +51,7 @@ public class AsyncTask {
 	
 	
 	@Async
-	public Future<Boolean> doDeleteById(){
+	public Future<Boolean> doDeleteById(String userName){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		CommonConfig.deleteTotal = 0L;
 		StringBuffer msgBuffer = new StringBuffer();
@@ -86,7 +86,9 @@ public class AsyncTask {
 			//发送邮件
 			String endTimeStr = format.format(new Date());
 			msgBuffer.append("###################\n");
-			msgBuffer.append("开始时间 ： ");
+			msgBuffer.append("启动用户 :");
+			msgBuffer.append(userName+"\n");
+			msgBuffer.append("开始时间 : ");
 			msgBuffer.append(startTimeStr + "\n");
 			msgBuffer.append("开始删除ID : ");
 			msgBuffer.append(startMinId + "\n");
@@ -95,7 +97,7 @@ public class AsyncTask {
 			msgBuffer.append("此次总共删除 : ");
 			msgBuffer.append(CommonConfig.deleteTotal);
 			msgBuffer.append("条数据。\n");
-			msgBuffer.append("结束时间 ： ");
+			msgBuffer.append("结束时间  : ");
 			msgBuffer.append(endTimeStr + "\n");
 			msgBuffer.append("错误 : ");
 			msgBuffer.append(msgError);

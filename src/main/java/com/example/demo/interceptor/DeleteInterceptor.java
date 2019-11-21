@@ -2,9 +2,12 @@ package com.example.demo.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.github.pagehelper.util.StringUtil;
 
 /**
 * @author：Administrator
@@ -12,8 +15,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 * @description:UserInterceptor 继承 HandlerInterceptorAdapter
 */
 
-public class UserInterceptor extends HandlerInterceptorAdapter{
-
+public class DeleteInterceptor extends HandlerInterceptorAdapter{
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

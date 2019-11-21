@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.example.demo.interceptor.RedisInterceptor;
-import com.example.demo.interceptor.UserInterceptor;
+import com.example.demo.interceptor.DeleteInterceptor;
 
 
 /**
@@ -23,7 +23,7 @@ public class WebInterceptorRegisterConfig extends WebMvcConfigurationSupport {
 	protected void addInterceptors(InterceptorRegistry registry) {
 		// TODO 根据注册顺序，注册拦截器
 		
-		registry.addInterceptor(new UserInterceptor()).addPathPatterns("/thy/**");
+		registry.addInterceptor(new DeleteInterceptor()).addPathPatterns("/deleteLog/postDelete");
 		registry.addInterceptor(new RedisInterceptor()).addPathPatterns("/redis/**");
 		super.addInterceptors(registry);
 	}
