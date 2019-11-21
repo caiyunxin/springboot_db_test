@@ -19,7 +19,7 @@ public class MyExceptionHandler {
 	
 	@ExceptionHandler(value=Exception.class)
 	public Object errorHandler(HttpServletRequest req , HttpServletResponse res ,  Exception e ) throws Exception{
-//		e.printStackTrace();
+		e.printStackTrace();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("exception" , e);
 		mav.addObject("url_path", req.getRequestURI());

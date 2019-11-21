@@ -32,25 +32,19 @@ public class SysLsOpLogServiceImpl implements SysLsOpLogService {
 		Example example = new Example(SysLsOpLog.class);
 		Criteria criteria = example.createCriteria();
 		criteria.andCondition("create_time < ", createTime);
-		List<SysLsOpLog> results = sysLsOpLogMapper.selectByExample(example);
-		SysLsOpLog slol = null;
-		if(results != null && results.size() > 0) {
-			slol = results.get(0);
-			System.out.println("------ service ------ " + slol.getId());
-		}
-		return slol;
+		return sysLsOpLogMapper.selectByExample(example).get(0);
 	}
 
 	@Override
 	public SysLsOpLog selectMaxDataLtCreateTime(Date createTime) {
-		// TODO Auto-generated method stub
-		List<SysLsOpLog> results = sysLsOpLogMapperCustomer.selectMaxDataLtCreateTime(createTime);
-		SysLsOpLog slol = null;
-		if(results != null && results.size() > 0) {
-			slol = results.get(0);
-			System.out.println("------ serviceCustomer ------ " + slol.getId());
-		}
-		return slol;
+		// TODO 自定义条件查询
+		return sysLsOpLogMapperCustomer.selectMaxDataLtCreateTime(createTime).get(0);
+	}
+
+	@Override
+	public SysLsOpLog selectSysLsOpLogById(Long maxId) {
+		// TODO 跟ID获取SysLsOpLog对象
+		return sysLsOpLogMapperCustomer.selectSysLsOpLogById(maxId);
 	}
 	
 

@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.SysLsOpLogMapperCustomer">
+	
+	<select id="selectSysLsOpLogById" resultType="com.example.demo.pojo.SysLsOpLog" parameterType="java.lang.Long">
+		SELECT 
+			id as id , 
+			sys_id as sysId , 
+			org_id as orgId ,
+			log_type as logType ,
+			hotel_id as hotelId ,
+			hotel_name as hotelName , 
+			room_num as roomNum ,
+			op_type as opType ,
+			op_data as opData ,
+			op_time as opTime , 
+			create_time as createTime
+		FROM
+			sys_ls_op_log
+		WHERE
+			id=#{maxId,jdbcType=BIGINT}
+	</select>
+
 	<!-- 根据用户ID查询用户信息集合 -->
 	<select id="selectMaxDataLtCreateTime" resultType="com.example.demo.pojo.SysLsOpLog" parameterType="java.util.Date">
+		
 		SELECT 
-			id,sys_id,org_id,log_type,hotel_id,hotel_name,room_num,op_type,op_data,op_time,create_time
+			MAX(id) as id , 
+			sys_id as sysId , 
+			org_id as orgId ,
+			log_type as logType ,
+			hotel_id as hotelId ,
+			hotel_name as hotelName , 
+			room_num as roomNum ,
+			op_type as opType ,
+			op_data as opData ,
+			op_time as opTime , 
+			create_time as createTime
 		FROM
 			sys_ls_op_log
 		WHERE
 			create_time<![CDATA[ < ]]>#{createTime,jdbcType=TIMESTAMP}
 	
 	</select>
+	
+	<!-- 查询最小ID -->
+	<select id="selectMinId" resultType="com.example.demo.pojo.SysLsOpLog">
+		SELECT 
+			MIN(id) as id
+		FROM
+			sys_ls_op_log
+	</select>
+	
+	<delete id="deleteDataLeId" parameterType="java.lang.Long" >
+		delete from sys_ls_op_log
+    	where id <![CDATA[ < ]]> #{maxId,jdbcType=BIGINT} limit 3
+	</delete>
+	
 </mapper>

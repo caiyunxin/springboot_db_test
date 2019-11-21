@@ -11,5 +11,12 @@ import com.example.demo.pojo.SysLsOpLog;
 * @description:SysLsOpLogMapperCustomer
 */
 public interface SysLsOpLogMapperCustomer {
+	
+	SysLsOpLog selectSysLsOpLogById(Long maxId);
+	
 	List<SysLsOpLog> selectMaxDataLtCreateTime(Date createTime);
+	
+	int deleteDataLeId(Long maxId);
+	
+	SysLsOpLog selectMinId();
 }

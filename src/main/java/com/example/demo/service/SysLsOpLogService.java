@@ -15,4 +15,5 @@ public interface SysLsOpLogService {
 	
 	public SysLsOpLog selectMaxDataLtCreateTime(Date createTime);
 	
+	public SysLsOpLog selectSysLsOpLogById(Long maxId);
 }
