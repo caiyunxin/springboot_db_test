@@ -48,7 +48,7 @@ public class CommonConfig {
 	/**
 	 * 每次删除数量,与sql语句中limit保持一致
 	 */
-	public static int deleteCount = 3;
+	public static int deleteCount = 10000;
 	
 	/**
 	 * 反转程序执行状态

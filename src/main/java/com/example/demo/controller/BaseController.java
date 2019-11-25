@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.config.CommonConfig;
 import com.example.demo.service.SysLsOpLogService;
 import com.example.demo.task.AsyncTask;
+
 /**
 * @author：Administrator
 * @createDate:2019-11-15 52:33

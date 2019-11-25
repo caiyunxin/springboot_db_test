@@ -13,6 +13,7 @@ import com.example.demo.config.CommonConfig;
 import com.example.demo.mail.SendEmail;
 import com.example.demo.mapper.SysLsOpLogMapperCustomer;
 
+
 /**
 * @author：Administrator
 * @createDate:2019-10-16 31:59
@@ -74,6 +75,7 @@ public class AsyncTask {
 					//停止删除任务
 					CommonConfig.started = false;
 					CommonConfig.submitStr = "启动";
+					CommonConfig.defaultTimeStr = "<font color='re'><b>删除任务无数据已停止</b></font>";
 				};
 				CommonConfig.deleteTotal += res;
 				System.out.println("minId : "+ CommonConfig.minId + ", currentTime : " + format.format(new Date()));
@@ -82,6 +84,9 @@ public class AsyncTask {
 		}catch (Exception e) {
 			// TODO: handle exception
 			msgError = e.getMessage();
+			CommonConfig.started = false;
+			CommonConfig.submitStr = "启动";
+			CommonConfig.defaultTimeStr = "<font color='re'><b>删除任务异常停止</b></font>";
 		}finally {
 			//发送邮件
 			String endTimeStr = format.format(new Date());
